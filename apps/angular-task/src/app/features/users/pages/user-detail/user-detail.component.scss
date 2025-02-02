@@ -1,0 +1,95 @@
+/* Crexi Theme Colors */
+:root {
+    --primary-dark: #162D4D;
+    --primary-light: #1E88E5;
+    --accent-color: #4A90E2;
+    --text-color: #162D4D;
+    --link-color: #00A3E0;
+}
+
+mat-card-header {
+    position: relative;
+}
+
+.user-card {
+    max-width: 400px;
+    margin: auto;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    background-color: white;
+}
+
+/* Favorite Button */
+.favorite-button {
+    position: absolute;
+    top: 6px;
+    right: 16px;
+}
+
+/* Icon Styling */
+.icon {
+    vertical-align: middle;
+    margin-right: 8px;
+    color: var(--text-color);
+}
+
+/* Content Styling */
+mat-card-content p {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin: 8px 0;
+    color: var(--text-color);
+}
+
+/* Address Block */
+.address-block {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 8px;
+}
+
+/* Buttons */
+mat-card-actions {
+    justify-content: flex-end;
+}
+
+/* Links */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h2 {
+    color: var(--primary-dark);
+}
+
+p {
+    font-size: 16px;
+}
+
+/* Company Info Block */
+.company-info {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 10px;
+}
+
+.catchphrase {
+    font-style: italic;
+    font-size: 14px;
+    color: var(--primary-light);
+    margin: 4px 0;
+}
+
+.company-bs {
+    font-size: 13px;
+    color: var(--text-color);
+}
