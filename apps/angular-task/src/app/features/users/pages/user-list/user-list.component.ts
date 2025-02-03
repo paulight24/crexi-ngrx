@@ -1,4 +1,4 @@
-import { Component, inject, computed, effect, ChangeDetectionStrategy, signal } from '@angular/core';
+import { Component, inject, computed, ChangeDetectionStrategy, signal } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { loadUsers } from '../../../../store/users/users.actions';
 import { selectUsers, selectUsersLoading, selectUsersError } from '../../../../store/users/users.selectors';
@@ -13,6 +13,7 @@ import { FavoriteService } from '../../../../core/services/favorite.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserListComponent {
+
     private store = inject(Store);
     private favoriteService = inject(FavoriteService);
     private router = inject(Router);
@@ -23,43 +24,57 @@ export class UserListComponent {
     errorMessage = this.store.selectSignal(selectUsersError);
     filterText = signal('');
 
-    constructor() {
+    constructor () {
+
         this.store.dispatch(loadUsers()); // Dispatch action to load users
+
     }
 
     /** Computed list of users based on filter **/
     filteredUsers = computed(() => {
+
         const filter = this.filterText().toLowerCase();
-        return this.users().filter(user =>
-            user.name.toLowerCase().includes(filter) ||
-            user.username.toLowerCase().includes(filter) ||
-            user.email.toLowerCase().includes(filter)
-        );
+        return this.users().filter((user) =>
+            user.name.toLowerCase().includes(filter)
+            || user.username.toLowerCase().includes(filter)
+            || user.email.toLowerCase().includes(filter));
+
     });
 
     /** Toggle favorite status **/
-    toggleFavorite(userId: number) {
+    toggleFavorite (userId: number) {
+
         this.favoriteService.toggleFavorite(userId);
+
     }
 
     /** Check if a user is a favorite **/
-    isFavorite(userId: number): boolean {
+    isFavorite (userId: number): boolean {
+
         return this.favoriteService.isFavorite(userId);
+
     }
 
     /** Updates filter text based on user input **/
-    updateFilter(event: Event) {
+    updateFilter (event: Event) {
+
         const input = event.target as HTMLInputElement;
         this.filterText.set(input.value);
+
     }
 
     /** Clears the filter input **/
-    clearFilter() {
+    clearFilter () {
+
         this.filterText.set('');
+
     }
 
     /** Navigation to profile page **/
-    goToProfile(id: number) {
+    goToProfile (id: number) {
+
         this.router.navigate(['/profiles', id]);
+
     }
+
 }

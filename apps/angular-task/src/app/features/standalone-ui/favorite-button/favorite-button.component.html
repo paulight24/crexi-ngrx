@@ -1,5 +1,9 @@
-<button mat-icon-button (click)="toggleFavorite.emit(); $event.stopPropagation()">
-    <mat-icon *ngIf="!isFavorite">favorite_border</mat-icon>
-    <mat-icon *ngIf="isFavorite" color="warn">favorite</mat-icon>
+<button (click)="toggleFavorite.emit(); $event.stopPropagation()" mat-icon-button>
+    @if (!isFavorite) {
+        <mat-icon>favorite_border</mat-icon>
+    }
+    @if (isFavorite) {
+        <mat-icon color="warn">favorite</mat-icon>
+    }
     <span class="emoji-heart">{{ isFavorite ? '💖' : '🤍' }}</span>
 </button>

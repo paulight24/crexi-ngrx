@@ -24,6 +24,7 @@
     "@angular/platform-server": "18.2.1",
     "@angular/router": "18.2.1",
     "@angular/ssr": "18.2.1",
+    "@ng-web-apis/common": "^4.11.1",
     "@ngrx/component-store": "18.0.2",
     "@ngrx/effects": "18.0.2",
     "@ngrx/entity": "^18.0.2",

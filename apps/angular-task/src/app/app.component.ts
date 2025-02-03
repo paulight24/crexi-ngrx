@@ -10,6 +10,8 @@ import { Store } from '@ngrx/store';
     styleUrl: './app.component.scss'
 })
 export class AppComponent {
+
     private store = inject(Store);
     title = 'angular-task';
+
 }

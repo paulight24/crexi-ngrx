@@ -1,62 +1,62 @@
-<mat-card *ngIf="user() as user" class="user-card">
-
-    <mat-card-header>
-        <div mat-card-avatar class="user-avatar">
-            <mat-icon>person</mat-icon>
-        </div>
-        <mat-card-title>{{ user.name }}</mat-card-title>
-        <mat-card-subtitle>&#64;{{ user.username }}</mat-card-subtitle>
-
-        <div class="favorite-button">
-            <crx-favorite-button [isFavorite]="isFavorite(user.id)" (toggleFavorite)="toggleFavorite(user.id)">
-            </crx-favorite-button>
-        </div>
-    </mat-card-header>
-
-
-    <mat-card-content>
-        <p>
-            <mat-icon class="icon">email</mat-icon>
-            <strong>Email:&nbsp;</strong>
-            <a [href]="'mailto:' + user.email">{{ user.email }}</a>
-        </p>
-
-        <p>
-            <mat-icon class="icon">phone</mat-icon>
-            <strong>Phone:&nbsp;</strong>
-            <a [href]="'tel:' + user.phone">{{ user.phone }}</a>
-        </p>
-
-        <p>
-            <mat-icon class="icon">language</mat-icon>
-            <strong>Website:&nbsp;</strong>
-            <a [href]="'http://' + user.website" target="_blank">{{ user.website }}</a>
-        </p>
-
-        <!-- Company Section -->
-        <div class="company-info" *ngIf="user.company as usr">
-            <mat-icon class="icon">business</mat-icon>
-            <div>
-                <strong>Company:</strong> {{ user.company.name }}
-                <p class="catchphrase">"{{ usr?.catchPhrase }}"</p>
-                <p class="company-bs"><em>{{ usr.bs }}</em></p>
+@if (user(); as user) {
+    <mat-card class="user-card">
+        <mat-card-header>
+            <div class="user-avatar" mat-card-avatar>
+                <mat-icon>person</mat-icon>
             </div>
-        </div>
+            <mat-card-title>{{ user.name }}</mat-card-title>
+            <mat-card-subtitle>&#64;{{ user.username }}</mat-card-subtitle>
 
-        <div class="address-block">
-            <mat-icon class="icon">location_on</mat-icon>
-            <div>
-                <strong>Address:</strong>
-                <p>{{ user.address.street }}</p>
-                <p>{{ user.address.city }}, {{ user.address.zipcode }}</p>
+            <div class="favorite-button">
+                <crx-favorite-button (toggleFavorite)="toggleFavorite(user.id)" [isFavorite]="isFavorite(user.id)" />
             </div>
-        </div>
+        </mat-card-header>
 
-    </mat-card-content>
+        <mat-card-content>
+            <p>
+                <mat-icon class="icon">email</mat-icon>
+                <strong>Email:&nbsp;</strong>
+                <a [href]="'mailto:' + user.email">{{ user.email }}</a>
+            </p>
 
-    <mat-card-actions align="end">
-        <button mat-button color="primary" (click)="goBack()">
-            <mat-icon>arrow_back</mat-icon> View All Users
-        </button>
-    </mat-card-actions>
-</mat-card>
+            <p>
+                <mat-icon class="icon">phone</mat-icon>
+                <strong>Phone:&nbsp;</strong>
+                <a [href]="'tel:' + user.phone">{{ user.phone }}</a>
+            </p>
+
+            <p>
+                <mat-icon class="icon">language</mat-icon>
+                <strong>Website:&nbsp;</strong>
+                <a [href]="'http://' + user.website" target="_blank">{{ user.website }}</a>
+            </p>
+
+            @if (user.company; as usr) {
+                <!-- Company Section -->
+                <div class="company-info">
+                    <mat-icon class="icon">business</mat-icon>
+                    <div>
+                        <strong>Company:</strong> {{ user.company.name }}
+                        <p class="catchphrase">"{{ usr?.catchPhrase }}"</p>
+                        <p class="company-bs">
+                            <em>{{ usr.bs }}</em>
+                        </p>
+                    </div>
+                </div>
+            }
+
+            <div class="address-block">
+                <mat-icon class="icon">location_on</mat-icon>
+                <div>
+                    <strong>Address:</strong>
+                    <p>{{ user.address.street }}</p>
+                    <p>{{ user.address.city }}, {{ user.address.zipcode }}</p>
+                </div>
+            </div>
+        </mat-card-content>
+
+        <mat-card-actions align="end">
+            <button (click)="goBack()" color="primary" mat-button><mat-icon>arrow_back</mat-icon> View All Users</button>
+        </mat-card-actions>
+    </mat-card>
+}

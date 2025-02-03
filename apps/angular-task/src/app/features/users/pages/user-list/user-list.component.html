@@ -1,61 +1,62 @@
 <div class="filter-container">
     <mat-form-field appearance="outline">
         <mat-label>Search Users</mat-label>
-        <input matInput (input)="updateFilter($event)" placeholder="Filter by name, username, or email"
-            [value]="filterText()">
-        <mat-icon matSuffix class="clear-icon" *ngIf="filterText()" (click)="clearFilter()">close</mat-icon>
+        <input (input)="updateFilter($event)" [value]="filterText()" matInput placeholder="Filter by name, username, or email" />
+        @if (filterText()) {
+            <mat-icon (click)="clearFilter()" class="clear-icon" matSuffix>close</mat-icon>
+        }
         <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
 </div>
 
 <!-- Loading Indicator -->
-<div class="loading-container" *ngIf="isLoading()">
-    <mat-spinner color="primary"></mat-spinner>
-</div>
-
-<!-- Error Message -->
-<p *ngIf="errorMessage()" class="error-message">{{ errorMessage() }}</p>
+@if (isLoading()) {
+    <div class="loading-container">
+        <mat-spinner color="primary" />
+    </div>
+}
+@if (errorMessage()) {
+    <!-- Error Message -->
+    <p class="error-message">{{ errorMessage() }}</p>
+}
 
 <div class="user-list">
-    @for(user of filteredUsers(); track user.id) {
-    <mat-card (click)="goToProfile(user.id)" class="user-card">
-        <mat-card-header>
-            <div mat-card-avatar class="user-avatar">
-                <mat-icon>person</mat-icon>
-            </div>
-            <mat-card-title>{{ user.name }}</mat-card-title>
-            <mat-card-subtitle>&#64;{{ user.username }}</mat-card-subtitle>
-        </mat-card-header>
+    @for (user of filteredUsers(); track user.id) {
+        <mat-card (click)="goToProfile(user.id)" class="user-card">
+            <mat-card-header>
+                <div class="user-avatar" mat-card-avatar>
+                    <mat-icon>person</mat-icon>
+                </div>
+                <mat-card-title>{{ user.name }}</mat-card-title>
+                <mat-card-subtitle>&#64;{{ user.username }}</mat-card-subtitle>
+            </mat-card-header>
 
-        <mat-card-content>
-            <p>
-                <mat-icon class="icon">email</mat-icon>
-                <strong>Email:&nbsp;</strong>
-                <a [href]="'mailto:' + user.email">{{ user.email }}</a>
-            </p>
+            <mat-card-content>
+                <p>
+                    <mat-icon class="icon">email</mat-icon>
+                    <strong>Email:&nbsp;</strong>
+                    <a [href]="'mailto:' + user.email">{{ user.email }}</a>
+                </p>
 
-            <p>
-                <mat-icon class="icon">phone</mat-icon>
-                <strong>Phone:&nbsp;</strong>
-                <a [href]="'tel:' + user.phone">{{ user.phone }}</a>
-            </p>
+                <p>
+                    <mat-icon class="icon">phone</mat-icon>
+                    <strong>Phone:&nbsp;</strong>
+                    <a [href]="'tel:' + user.phone">{{ user.phone }}</a>
+                </p>
 
-            <p>
-                <mat-icon class="icon">language</mat-icon>
-                <strong>Website:&nbsp;</strong>
-                <a [href]="'http://' + user.website" target="_blank">{{ user.website }}</a>
-            </p>
-        </mat-card-content>
+                <p>
+                    <mat-icon class="icon">language</mat-icon>
+                    <strong>Website:&nbsp;</strong>
+                    <a [href]="'http://' + user.website" target="_blank">{{ user.website }}</a>
+                </p>
+            </mat-card-content>
 
-        <!-- Favorite Button + View More placed at the bottom -->
-        <mat-card-actions align="end">
-            <crx-favorite-button [isFavorite]="isFavorite(user.id)" (toggleFavorite)="toggleFavorite(user.id)">
-            </crx-favorite-button>
+            <!-- Favorite Button + View More placed at the bottom -->
+            <mat-card-actions align="end">
+                <crx-favorite-button (toggleFavorite)="toggleFavorite(user.id)" [isFavorite]="isFavorite(user.id)" />
 
-            <button mat-button color="primary" (click)="goToProfile(user.id)">
-                View More
-            </button>
-        </mat-card-actions>
-    </mat-card>
+                <button (click)="goToProfile(user.id)" color="primary" mat-button>View More</button>
+            </mat-card-actions>
+        </mat-card>
     }
 </div>

@@ -7,12 +7,18 @@ export const favoritesReducer = createReducer(
     initialFavoritesState,
     on(loadFavorites, (_, { favorites }) => new Set(favorites)),
     on(toggleFavorite, (state, { userId }) => {
+
         const newFavorites = new Set(state);
         if (newFavorites.has(userId)) {
+
             newFavorites.delete(userId);
+
         } else {
+
             newFavorites.add(userId);
+
         }
         return newFavorites;
+
     })
 );

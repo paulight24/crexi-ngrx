@@ -8,14 +8,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 
 describe('UserListComponent', () => {
+
     let component: UserListComponent;
     let fixture: ComponentFixture<UserListComponent>;
-    let initialState = {
+    const initialState = {
         users: { users: [], loading: false, error: null },
         favorites: { list: [] },
     };
 
     beforeEach(async () => {
+
         await TestBed.configureTestingModule({
             imports: [
                 CommonModule,
@@ -30,9 +32,13 @@ describe('UserListComponent', () => {
         fixture = TestBed.createComponent(UserListComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
+
     });
 
     it('should create', () => {
+
         expect(component).toBeTruthy();
+
     });
+
 });

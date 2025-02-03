@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,6 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
     styleUrl: './favorite-button.component.scss',
 })
 export class FavoriteButtonComponent {
-    @Input() isFavorite: boolean = false; // Receives favorite state from parent
+
+    @Input() isFavorite = false; // Receives favorite state from parent
     @Output() toggleFavorite = new EventEmitter<void>();
+
 }

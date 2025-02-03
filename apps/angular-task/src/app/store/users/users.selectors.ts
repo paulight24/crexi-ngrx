@@ -24,5 +24,4 @@ export const selectUsersError = createSelector(
 
 export const selectUserById = (userId: number) =>
     createSelector(selectUsers, (users) =>
-        users.find(user => user.id === userId) || null
-    );
+        users.find((user) => user.id === userId) || null);

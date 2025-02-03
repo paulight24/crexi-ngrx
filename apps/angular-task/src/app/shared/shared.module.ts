@@ -10,16 +10,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 const MATERIAL_MODULES = [
-  MatCardModule,
-  MatButtonModule,
-  MatIconModule,
-  MatProgressSpinnerModule,
-  MatFormFieldModule,
-  MatInputModule
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule
 ];
 
 @NgModule({
-  imports: [CommonModule, ...MATERIAL_MODULES],
-  exports: [...MATERIAL_MODULES], // Export so other modules can use Material components
+    imports: [CommonModule, ...MATERIAL_MODULES],
+    exports: [...MATERIAL_MODULES], // Export so other modules and standalone comps can use Material components
 })
 export class SharedModule { }

@@ -6,10 +6,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 
 describe('UserDetailComponent', () => {
+
     let component: UserDetailComponent;
     let fixture: ComponentFixture<UserDetailComponent>;
 
     beforeEach(async () => {
+
         await TestBed.configureTestingModule({
             imports: [
                 CommonModule,
@@ -23,9 +25,13 @@ describe('UserDetailComponent', () => {
         fixture = TestBed.createComponent(UserDetailComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
+
     });
 
     it('should create', () => {
+
         expect(component).toBeTruthy();
+
     });
+
 });
