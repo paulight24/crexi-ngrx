@@ -1,10 +1,21 @@
 import { test, expect } from '@playwright/test';
 
-test('has title', async ({ page }) => {
+const BASE_URL = process.env['BASE_URL'] || 'http://localhost:4200';
 
-    await page.goto('/');
+test.describe('User Profiles Page', () => {
 
-    // Expect h1 to contain a substring.
-    expect(await page.locator('h1').innerText()).toContain('User Management');
+    test.beforeEach(async ({ page }) => {
+
+        await page.goto(`${BASE_URL}/profiles`);
+        await page.waitForLoadState('domcontentloaded');
+
+    });
+
+    test('has title', async ({ page }) => {
+
+        const title = page.locator('h1');
+        await expect(title).toContainText('User Management');
+
+    });
 
 });
