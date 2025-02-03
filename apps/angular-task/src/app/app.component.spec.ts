@@ -1,15 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { RouterTestingModule } from '@angular/router/testing';
-import { provideMockStore } from '@ngrx/store/testing';
+import { provideRouter } from '@angular/router';
 
 describe('AppComponent', () => {
 
     beforeEach(async () => {
 
         await TestBed.configureTestingModule({
-            imports: [AppComponent, RouterTestingModule],
-            providers: [provideMockStore()],
+            imports: [AppComponent],
+            providers: [provideRouter([])],
         }).compileComponents();
 
     });
@@ -30,7 +29,7 @@ describe('AppComponent', () => {
 
     });
 
-    it('should render title', () => {
+    it('should render title "User Management"', () => {
 
         const fixture = TestBed.createComponent(AppComponent);
         fixture.detectChanges();

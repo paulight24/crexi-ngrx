@@ -1,7 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Store } from '@ngrx/store';
-
 @Component({
     standalone: true,
     imports: [RouterModule],
@@ -11,7 +9,6 @@ import { Store } from '@ngrx/store';
 })
 export class AppComponent {
 
-    private store = inject(Store);
     title = 'angular-task';
 
 }
